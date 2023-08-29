@@ -1,11 +1,16 @@
 import Image from 'next/image'
+import {hentTrelloKort} from "@/trello/trelloClient";
 
-export default function Docs({ params }: { params: { slug: string[] } }) {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {JSON.stringify(params)}
+export default async function Docs({params}: { params: { slug: string[] } }) {
 
-    </main>
-  )
+    const kort = await hentTrelloKort()
+    return (
+        <main>
+            {kort.map(k => <div className={"pl-4"} key={k.id}>{k.name}
+                {k.cards.map(c => <div className={"pl-4"} key={c.id}>{c.name}</div>)}
+
+            </div>)}
+        </main>
+    )
 }
 
