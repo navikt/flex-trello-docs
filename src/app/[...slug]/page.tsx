@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { ReactElement } from 'react'
+import { MDXComponents } from 'mdx/types'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
 
@@ -39,10 +40,20 @@ export default async function Docs({ params }: { params: { slug: string[] } }): 
                 </main>
             )
         }
+        function overrides(components: MDXComponents): MDXComponents {
+            console.log('JEg blir kjørt')
+            return {
+                // Allows customizing built-in components, e.g. to add styling.
+                h1: ({ children }) => <h3 className="text-red-500">{children}</h3>,
+                h3: ({ children }) => <h5 className="text-red-500">{children}</h5>,
+                ...components,
+            }
+        }
+
         return (
             <main className="p-10">
                 <h1>{kortet.name}</h1>
-                <MDXRemote source={kortet.desc} />
+                <MDXRemote source={kortet.desc} components={overrides} />
             </main>
         )
     }

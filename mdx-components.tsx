@@ -6,10 +6,11 @@ import type { MDXComponents } from 'mdx/types'
 // other libraries.
 
 // This file is required to use MDX in `app` directory.
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+export function mine(components: MDXComponents): MDXComponents {
     return {
         // Allows customizing built-in components, e.g. to add styling.
-        // h1: ({ children }) => <h1 style={{ fontSize: "100px" }}>{children}</h1>,
+        h1: ({ children }) => <h3 className="text-red-500">{children}</h3>,
+        h3: ({ children }) => <h5 className="text-red-500">{children}</h5>,
         ...components,
     }
 }
