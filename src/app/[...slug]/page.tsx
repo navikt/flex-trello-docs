@@ -40,7 +40,7 @@ export default async function Docs({ params }: { params: { slug: string[] } }): 
                 </main>
             )
         }
-        function overrides(components: MDXComponents): MDXComponents {
+        const overrides = (components: MDXComponents): MDXComponents => {
             console.log('JEg blir kjørt')
             return {
                 // Allows customizing built-in components, e.g. to add styling.
