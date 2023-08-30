@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { ReactElement } from 'react'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
+import { Heading, BodyLong } from '@/components/clientAksel'
 
 export default async function Docs({ params }: { params: { slug: string[] } }): Promise<ReactElement> {
     const list = await hentTrelloKort()
@@ -46,8 +47,22 @@ export default async function Docs({ params }: { params: { slug: string[] } }): 
                 <MDXRemote
                     source={kortet.desc}
                     components={{
-                        p: (props) => <p {...props} className="mb-0" />,
-                        h3: (props) => <p {...props} className="text-red-500" />,
+                        p: (props) => <BodyLong className="mb-0">{props.children}</BodyLong>,
+                        h2: (props) => (
+                            <Heading size="medium" level="2" className="text-green-500">
+                                {props.children}
+                            </Heading>
+                        ),
+                        h3: (props) => (
+                            <Heading size="small" level="3" className="text-blue-200">
+                                {props.children}
+                            </Heading>
+                        ),
+                        h1: (props) => (
+                            <Heading size="large" level="1" className="text-red-500">
+                                {props.children}
+                            </Heading>
+                        ),
                     }}
                 />
             </main>
