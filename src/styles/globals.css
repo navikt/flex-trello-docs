@@ -7,9 +7,7 @@
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-    font-size: var(--a-font-size-heading-xlarge);
-    line-height: var(--a-font-line-height-heading-xlarge);
-    margin-bottom: var(--a-spacing-4);
-    letter-spacing: -0.008em;
+h1:not(.navds-heading)::after {
+    content: 'Ikke bruk Heading 1 i trello, bruk Heading 2. Kortets tittel er Heading 1';
+    color: red;
 }
