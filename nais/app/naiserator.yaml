@@ -16,10 +16,10 @@ spec:
     cpuThresholdPercentage: 90
   resources:
     limits:
-      memory: 150Mi
+      memory: 250Mi
     requests:
       cpu: 100m
-      memory: 150Mi
+      memory: 250Mi
   liveness:
     path: api/internal/isAlive
   readiness:
@@ -31,5 +31,6 @@ spec:
     outbound:
       external:
         - host: api.trello.com
+        - host: trello.com
   envFrom:
     - secret: flex-trello-docs-trello-secrets
