@@ -4,7 +4,7 @@ interface TrelloList {
     url: string
 }
 
-interface TrelloCard {
+export interface TrelloCard {
     id: string
     name: string
     url: string

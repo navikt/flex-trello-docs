@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import '@navikt/ds-css';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    font-size: var(--a-font-size-heading-xlarge);
+    line-height: var(--a-font-line-height-heading-xlarge);
+}
