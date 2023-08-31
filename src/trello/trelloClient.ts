@@ -41,7 +41,13 @@ async function hentTrelloLister(): Promise<TrelloList[]> {
 }
 
 function urlFriendly(str: string): string {
-    return str.toLowerCase().replace(/ /g, '-')
+    return str
+        .toLowerCase()
+        .replace(/ /g, '-')
+        .replaceAll('?', '')
+        .replaceAll('æ', 'a')
+        .replaceAll('ø', 'o')
+        .replaceAll('å', 'a')
 }
 
 export async function hentTrelloKort(): Promise<ListMedCards[]> {

@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 import Link from 'next/link'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
-import { Label } from '@/components/clientAksel'
+import { AkselLink, Label } from '@/components/clientAksel'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
     const list = await hentTrelloKort()
@@ -14,23 +14,40 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <html lang="en">
             <body>
                 <div className="min-h-screen bg-gray-100 flex">
-                    <div className="w-80 bg-white p-4 shadow-md space-y-4">
-                        <Link className="navds-link block" href="/">
-                            {førsteListe.cards[0].name}
-                        </Link>
+                    <div className="w-[30rem] bg-white p-10 shadow-md space-y-4">
+                        {førsteListe.cards.map((l, index) => {
+                            const first = index === 0
+                            const url = first ? '/' : '/' + l.url
+                            return (
+                                <AkselLink
+                                    className={`block${first ? ' font-extrabold' : ''}`}
+                                    underline={false}
+                                    as={Link}
+                                    key={l.id}
+                                    href={url}
+                                >
+                                    {l.name}
+                                </AkselLink>
+                            )
+                        })}
                         {deAndreListene.map((l) => (
                             <div key={l.id} className=" space-y-2">
                                 <Label as="p">{l.name}</Label>
                                 {l.cards.map((c) => (
-                                    <Link className="navds-link block pl-4" key={c.id} href={'/' + l.url + '/' + c.url}>
+                                    <AkselLink
+                                        className="block pl-4"
+                                        underline={false}
+                                        as={Link}
+                                        key={l.id}
+                                        href={'/' + l.url + '/' + c.url}
+                                    >
                                         {c.name}
-                                    </Link>
+                                    </AkselLink>
                                 ))}
-                                <Link className="text-blue-800" href={l.url}></Link>
                             </div>
                         ))}
                     </div>
-                    <div className="flex-1 max-w-5xl mx-auto p-4">
+                    <div className="flex-1 max-w-5xl mx-auto p-10">
                         <main>{children}</main>
                     </div>
                 </div>

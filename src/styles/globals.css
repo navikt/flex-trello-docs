@@ -10,4 +10,6 @@
 h1 {
     font-size: var(--a-font-size-heading-xlarge);
     line-height: var(--a-font-line-height-heading-xlarge);
+    margin-bottom: var(--a-spacing-4);
+    letter-spacing: -0.008em;
 }

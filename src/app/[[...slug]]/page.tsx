@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ReactElement } from 'react'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
@@ -12,6 +11,18 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
         return <TrelloKortRendring kortet={list[0].cards[0]} />
     }
 
+    if (slug.length == 1) {
+        const kortet = list[0].cards.find((c) => c.url === slug[0])
+        if (!kortet) {
+            return (
+                <main>
+                    <h1>404</h1>
+                </main>
+            )
+        }
+
+        return <TrelloKortRendring kortet={kortet} />
+    }
     const lista = list.find((k) => k.url === slug[0])
 
     if (!lista) {
@@ -21,27 +32,12 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
             </main>
         )
     }
-    if (slug.length == 1) {
-        return (
-            <main>
-                <h1>{lista.name}</h1>
-                {lista.cards.map((c) => (
-                    <div key={c.id}>
-                        <Link className="text-blue-800" href={lista.url + '/' + c.url}>
-                            {c.name}
-                        </Link>
-                    </div>
-                ))}
-            </main>
-        )
-    }
-
     if (slug.length == 2) {
         const kortet = lista.cards.find((c) => c.url === slug[1])
         if (!kortet) {
             return (
                 <main>
-                    <h1>404</h1>
+                    <h1>404 fant ikke kort</h1>
                 </main>
             )
         }

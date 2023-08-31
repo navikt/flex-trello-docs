@@ -7,13 +7,15 @@ import { BodyLong, Heading } from '@/components/clientAksel'
 export function TrelloKortRendring({ kortet }: { kortet: TrelloCard }): ReactElement {
     return (
         <>
-            <h1>{kortet.name}</h1>
+            <Heading size="large" spacing>
+                {kortet.name}
+            </Heading>
             <MDXRemote
                 source={kortet.desc}
                 components={{
-                    p: (props) => <BodyLong>{props.children}</BodyLong>,
+                    p: (props) => <BodyLong spacing>{props.children}</BodyLong>,
                     h2: (props) => (
-                        <Heading size="medium" level="2">
+                        <Heading size="medium" level="2" spacing>
                             {props.children}
                         </Heading>
                     ),
