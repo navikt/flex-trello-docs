@@ -12,6 +12,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
     return (
         <html lang="en">
+            <head>
+                <title>{førsteListe.cards[0].name}</title>
+            </head>
             <body>
                 <div className="min-h-screen bg-gray-100 flex">
                     <div className="w-[22rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">

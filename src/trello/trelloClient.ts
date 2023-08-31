@@ -10,6 +10,8 @@ export interface TrelloCard {
     url: string
     desc: string
     idList: string
+    shortUrl: string
+    dateLastActivity: string
 }
 
 interface ListMedCards extends TrelloList {
@@ -53,7 +55,6 @@ function urlFriendly(str: string): string {
 export async function hentTrelloKort(): Promise<ListMedCards[]> {
     const kort = await hentTrellokort()
     const lister = await hentTrelloLister()
-
     const listerMedKort = lister.map((liste) => {
         return {
             ...liste,
