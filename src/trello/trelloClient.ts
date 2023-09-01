@@ -21,13 +21,14 @@ interface ListMedCards extends TrelloList {
 const board = process.env['TRELLO_BOARD']
 const token = process.env['TRELLO_TOKEN']
 const key = process.env['TRELLO_KEY']
+const revalidateSeconds = 10
 
 async function hentTrellokort(): Promise<TrelloCard[]> {
     if (!board || !token || !key) {
         throw Error('Missing trello envs ')
     }
     const a = await fetch(`https://api.trello.com/1/boards/${board}/cards?key=${key}&token=${token}`, {
-        next: { revalidate: 60 },
+        next: { revalidate: revalidateSeconds },
     })
     return await a.json()
 }
@@ -37,7 +38,7 @@ async function hentTrelloLister(): Promise<TrelloList[]> {
         throw Error('Missing trello envs ')
     }
     const a = await fetch(`https://api.trello.com/1/boards/${board}/lists?key=${key}&token=${token}`, {
-        next: { revalidate: 60 },
+        next: { revalidate: revalidateSeconds },
     })
     return await a.json()
 }
