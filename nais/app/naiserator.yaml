@@ -10,6 +10,7 @@ spec:
   port: 8080
   ingresses:
     - https://flex-docs.intern.dev.nav.no
+    - https://flex-docs.ekstern.dev.nav.no
   replicas:
     min: 1
     max: 1
