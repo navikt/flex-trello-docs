@@ -4,7 +4,7 @@ import { hentTrelloKort } from '@/trello/trelloClient'
 import { TrelloKortRendring } from '@/components/trelloKortRendring'
 
 export default async function Docs({ params }: { params: { slug?: string[] } }): Promise<ReactElement> {
-    const list = await hentTrelloKort()
+    const list = await hentTrelloKort(process.env['TRELLO_BOARD'])
 
     const slug = params.slug
     if (!slug) {

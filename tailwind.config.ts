@@ -1,19 +1,13 @@
-import type { Config } from 'tailwindcss'
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-const config: Config = {
-    content: [
-        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    ],
+const naviktTailwindPreset = require('@navikt/ds-tailwind')
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    presets: [naviktTailwindPreset],
+    content: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
-        extend: {
-            backgroundImage: {
-                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-            },
-        },
+        extend: {},
     },
     plugins: [],
 }
-export default config

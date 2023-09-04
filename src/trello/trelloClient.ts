@@ -14,16 +14,15 @@ export interface TrelloCard {
     dateLastActivity: string
 }
 
-interface ListMedCards extends TrelloList {
+export interface ListMedCards extends TrelloList {
     cards: TrelloCard[]
 }
 
-const board = process.env['TRELLO_BOARD']
 const token = process.env['TRELLO_TOKEN']
 const key = process.env['TRELLO_KEY']
 const revalidateSeconds = 10
 
-async function hentTrellokort(): Promise<TrelloCard[]> {
+async function hentTrellokort(board: string | undefined): Promise<TrelloCard[]> {
     if (!board || !token || !key) {
         throw Error('Missing trello envs ')
     }
@@ -33,7 +32,7 @@ async function hentTrellokort(): Promise<TrelloCard[]> {
     return await a.json()
 }
 
-async function hentTrelloLister(): Promise<TrelloList[]> {
+async function hentTrelloLister(board: string | undefined): Promise<TrelloList[]> {
     if (!board || !token || !key) {
         throw Error('Missing trello envs ')
     }
@@ -53,9 +52,9 @@ function urlFriendly(str: string): string {
         .replaceAll('å', 'a')
 }
 
-export async function hentTrelloKort(): Promise<ListMedCards[]> {
-    const kort = await hentTrellokort()
-    const lister = await hentTrelloLister()
+export async function hentTrelloKort(board: string | undefined): Promise<ListMedCards[]> {
+    const kort = await hentTrellokort(board)
+    const lister = await hentTrelloLister(board)
     const listerMedKort = lister.map((liste) => {
         return {
             ...liste,

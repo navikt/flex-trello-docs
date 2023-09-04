@@ -1,0 +1,42 @@
+import '../../../styles/globals.css'
+import { ReactElement } from 'react'
+import Link from 'next/link'
+
+import { hentTrelloKort } from '@/trello/trelloClient'
+import { AkselLink } from '@/components/clientAksel'
+
+export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
+    const list = await hentTrelloKort(process.env['TRELLO_OKR_BOARD'])
+
+    return (
+        <html lang="en">
+            <head>
+                <title>{list[0].cards[0].name}</title>
+            </head>
+            <body>
+                <div className="min-h-screen  flex">
+                    <div className="w-[22rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
+                        {list.map((l, index) => {
+                            const first = index === 0
+                            const url = first ? '/okr-board/' : '/okr-board/' + l.url
+                            return (
+                                <AkselLink
+                                    className={`block${first ? ' font-extrabold' : ''}`}
+                                    underline={false}
+                                    as={Link}
+                                    key={l.id}
+                                    href={url}
+                                >
+                                    {l.name}
+                                </AkselLink>
+                            )
+                        })}
+                    </div>
+                    <div className="flex-1 max-w-5xl mx-auto p-10">
+                        <main>{children}</main>
+                    </div>
+                </div>
+            </body>
+        </html>
+    )
+}

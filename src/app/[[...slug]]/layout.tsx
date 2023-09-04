@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../../styles/globals.css'
 import { ReactElement } from 'react'
 import Link from 'next/link'
 
@@ -6,7 +6,8 @@ import { hentTrelloKort } from '@/trello/trelloClient'
 import { AkselLink, Label } from '@/components/clientAksel'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
-    const list = await hentTrelloKort()
+    const trellobard = process.env['TRELLO_BOARD']
+    const list = await hentTrelloKort(trellobard)
     const førsteListe = list[0]
     const deAndreListene = list.slice(1)
 

@@ -34,3 +34,6 @@ spec:
         - host: trello.com
   envFrom:
     - secret: flex-trello-docs-trello-secrets
+  env:
+    - name: TRELLO_OKR_BOARD
+      value: 0gO6UCsS
