@@ -15,6 +15,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <html lang="en">
             <head>
                 <title>{førsteListe.cards[0].name}</title>
+                <meta name="robots" content="noindex" />
             </head>
             <body>
                 <div className="min-h-screen bg-gray-100 flex">
