@@ -29,11 +29,11 @@ spec:
       cpu: 100m
       memory: 250Mi
   liveness:
-    path: api/internal/isAlive
+    path: /api/internal/isAlive
   readiness:
-    path: api/internal/isAlive
+    path: /api/internal/isAlive
   startup:
-    path: api/internal/isAlive
+    path: /api/internal/isAlive
     initialDelay: 10
   accessPolicy:
     outbound:

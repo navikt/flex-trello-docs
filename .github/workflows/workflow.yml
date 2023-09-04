@@ -40,6 +40,7 @@ jobs:
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
   nais-deploy:
+    if: github.ref_name == 'master' || startsWith(github.ref_name, 'dev-')
     needs: build-and-publish
     runs-on: ubuntu-latest
     steps:
