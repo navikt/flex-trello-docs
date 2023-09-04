@@ -4,8 +4,10 @@ import Link from 'next/link'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
 import { AkselLink, Label } from '@/components/clientAksel'
+import { verifyUserLoggedIn } from '@/auth/authentication'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
+    await verifyUserLoggedIn()
     const trellobard = process.env['TRELLO_BOARD']
     const list = await hentTrelloKort(trellobard)
     const førsteListe = list[0]

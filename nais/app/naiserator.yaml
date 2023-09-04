@@ -14,15 +14,14 @@ spec:
     min: 1
     max: 1
     cpuThresholdPercentage: 90
-  spec:
-    azure:
-      application:
-        allowAllUsers: true
-        enabled: true
-        tenant: nav.no
-      sidecar:
-        enabled: true
-        autoLogin: false
+  azure:
+    application:
+      allowAllUsers: true
+      enabled: true
+      tenant: nav.no
+    sidecar:
+      enabled: true
+      autoLogin: false
   resources:
     limits:
       memory: 250Mi
