@@ -19,17 +19,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <body>
                 <div className="min-h-screen bg-gray-100 flex">
                     <div className="w-[22rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
+                        <AkselLink className="block font-extrabold" underline={false} as={Link} href="/">
+                            {førsteListe.cards[0].name}
+                        </AkselLink>
+                        <AkselLink className="block" underline={false} as={Link} href="/okr-board/">
+                            OKR Board
+                        </AkselLink>
                         {førsteListe.cards.map((l, index) => {
-                            const first = index === 0
-                            const url = first ? '/' : '/' + l.url
+                            if (index === 0) return null
                             return (
-                                <AkselLink
-                                    className={`block${first ? ' font-extrabold' : ''}`}
-                                    underline={false}
-                                    as={Link}
-                                    key={l.id}
-                                    href={url}
-                                >
+                                <AkselLink className="block" underline={false} as={Link} key={l.id} href={'/' + l.url}>
                                     {l.name}
                                 </AkselLink>
                             )
