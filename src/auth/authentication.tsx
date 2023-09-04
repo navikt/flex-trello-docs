@@ -15,6 +15,7 @@ export async function verifyUserLoggedIn(): Promise<void> {
     }
 
     const redirectPath = requestHeaders.get('x-path')
+    logger.info(`Redirect path is ${redirectPath}`)
     if (!redirectPath == null) {
         logger.warn("Missing 'x-path' header, is middleware middlewaring?")
     }

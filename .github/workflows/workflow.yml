@@ -43,6 +43,7 @@ jobs:
     if: github.ref_name == 'master' || startsWith(github.ref_name, 'dev-')
     needs: build-and-publish
     runs-on: ubuntu-latest
+    concurrency: nais-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
