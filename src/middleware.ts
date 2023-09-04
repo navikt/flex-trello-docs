@@ -27,3 +27,16 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
         },
     })
 }
+
+export const config = {
+    matcher: [
+        /*
+         * Match all request paths except for the ones starting with:
+         * - api/internal (API routes)
+         * - _next/static (static files)
+         * - _next/image (image optimization files)
+         * - favicon.ico (favicon file)
+         */
+        '/((?!api/internal|_next/static|_next/image|favicon.ico).*)',
+    ],
+}

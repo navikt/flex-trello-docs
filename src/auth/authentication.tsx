@@ -6,7 +6,6 @@ import { redirect } from 'next/navigation'
 import { isLocalOrDemo } from '@/utlis/env'
 
 export async function verifyUserLoggedIn(): Promise<void> {
-    logger.info('Getting headers')
     const requestHeaders = headers()
 
     if (isLocalOrDemo) {
@@ -15,11 +14,9 @@ export async function verifyUserLoggedIn(): Promise<void> {
     }
 
     const redirectPath = requestHeaders.get('x-path')
-    logger.info(`Redirect path is ${redirectPath}`)
     if (!redirectPath == null) {
         logger.warn("Missing 'x-path' header, is middleware middlewaring?")
     }
-    logger.info(`Redirect path is ${redirectPath}`)
 
     const bearerToken: string | null | undefined = requestHeaders.get('authorization')
     if (!bearerToken) {
