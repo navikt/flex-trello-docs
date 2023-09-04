@@ -21,9 +21,7 @@ spec:
       tenant: nav.no
     sidecar:
       enabled: true
-      autoLogin: true
-      autoLoginIgnorePaths:
-        - /internal/*
+      autoLogin: false
   resources:
     limits:
       memory: 250Mi
