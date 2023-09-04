@@ -41,8 +41,15 @@ jobs:
 
   nais-deploy:
     needs: build-and-publish
-    uses: navikt/flex-github-actions-workflows/.github/workflows/nais-deploy-dev-og-prod.yml@master
-    with:
-      image: ${{ needs.build-and-publish.outputs.image }}
-      app: ${{ github.event.repository.name }}
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        name: Deploy til dev
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          IMAGE: ${{ needs.build-and-publish.outputs.image }}
+          RESOURCE: nais/app/naiserator.yaml
+          VARS: nais/app/dev.yaml
