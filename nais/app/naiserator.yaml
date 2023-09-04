@@ -21,7 +21,9 @@ spec:
       tenant: nav.no
     sidecar:
       enabled: true
-      autoLogin: false
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
   resources:
     limits:
       memory: 250Mi
@@ -29,11 +31,11 @@ spec:
       cpu: 100m
       memory: 250Mi
   liveness:
-    path: /api/internal/isAlive
+    path: /internal/isAlive
   readiness:
-    path: /api/internal/isAlive
+    path: /internal/isAlive
   startup:
-    path: /api/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
   accessPolicy:
     outbound:
