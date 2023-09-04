@@ -45,3 +45,7 @@ spec:
   env:
     - name: TRELLO_OKR_BOARD
       value: 0gO6UCsS
+  filesFrom:
+    - emptyDir:
+        medium: Memory
+      mountPath: /app/.next/cache
