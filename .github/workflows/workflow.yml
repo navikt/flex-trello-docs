@@ -52,4 +52,3 @@ jobs:
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.build-and-publish.outputs.image }}
           RESOURCE: nais/app/naiserator.yaml
-          VARS: nais/app/dev.yaml
