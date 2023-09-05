@@ -16,7 +16,21 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <meta name="robots" content="noindex" />
             </head>
             <body>
-                <main className="py-20 px-20">{children}</main>
+                <main
+                    style={
+                        {
+                            '--a-font-size-large': '1.75rem',
+                            '--a-font-line-height-large': '1.75rem',
+                            '--a-font-size-medium': '1.5rem',
+                            '--a-font-line-height-medium': '1.5rem',
+                            '--a-font-size-heading-medium': '2rem',
+                            '--a-font-line-height-heading-medium': '2rem',
+                        } as React.CSSProperties
+                    }
+                    className="py-20 px-20"
+                >
+                    {children}
+                </main>
             </body>
         </html>
     )
