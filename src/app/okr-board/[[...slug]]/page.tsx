@@ -8,7 +8,7 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
 
     const slug = params.slug
     if (!slug) {
-        return <OkrKortRendring list={list[0]} />
+        return <OkrKortRendring list={list[0]} width="w-[30rem]" height="h-[30rem]" />
     }
 
     if (slug.length == 1) {
@@ -21,7 +21,7 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
             )
         }
 
-        return <OkrKortRendring list={lista} />
+        return <OkrKortRendring list={lista} width="w-[30rem]" height="h-[30rem]" />
     }
 
     return (

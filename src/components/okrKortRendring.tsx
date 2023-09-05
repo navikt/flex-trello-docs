@@ -4,9 +4,9 @@ import { ListMedCards, TrelloCard } from '@/trello/trelloClient'
 import { Heading } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
-function EnkeltKvadrat({ kortet }: { kortet: TrelloCard }): ReactElement {
+function EnkeltKvadrat({ kortet, height, width }: { kortet: TrelloCard; height: string; width: string }): ReactElement {
     return (
-        <div className="w-1/2 h-1/2 border border-gray-200 bg-gray-50 ">
+        <div className={`flex-item border border-gray-200 bg-gray-50 ${width} ${height}`}>
             <Heading level="2" size="medium" className="bg-blue-100 p-4" spacing>
                 {kortet.name}
             </Heading>
@@ -17,17 +17,29 @@ function EnkeltKvadrat({ kortet }: { kortet: TrelloCard }): ReactElement {
     )
 }
 
-export function OkrKortRendring({ list }: { list: ListMedCards }): ReactElement {
+export function OkrKortRendring({
+    list,
+    height,
+    width,
+}: {
+    list: ListMedCards
+    height: string
+    width: string
+}): ReactElement {
     return (
         <>
-            <Heading size="large" spacing>
-                {list.name}
-            </Heading>
-            <div className="w-100 h-[50rem] flex flex-wrap ">
-                <EnkeltKvadrat kortet={list.cards[0]} />
-                <EnkeltKvadrat kortet={list.cards[1]} />
-                <EnkeltKvadrat kortet={list.cards[2]} />
-                <EnkeltKvadrat kortet={list.cards[3]} />
+            <div className="flex justify-center">
+                <Heading size="large" spacing>
+                    {list.name}
+                </Heading>
+            </div>
+            <div className="flex justify-center">
+                <EnkeltKvadrat kortet={list.cards[0]} height={height} width={width} />
+                <EnkeltKvadrat kortet={list.cards[1]} height={height} width={width} />
+            </div>
+            <div className="flex justify-center">
+                <EnkeltKvadrat kortet={list.cards[2]} height={height} width={width} />
+                <EnkeltKvadrat kortet={list.cards[3]} height={height} width={width} />
             </div>
         </>
     )

@@ -18,7 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <meta name="robots" content="noindex" />
             </head>
             <body>
-                <div className="min-h-screen  flex">
+                <div className="min-h-screen flex">
                     <div className="w-[22rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
                         {list.map((l, index) => {
                             const first = index === 0
