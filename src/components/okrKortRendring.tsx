@@ -4,33 +4,25 @@ import { ListMedCards, TrelloCard } from '@/trello/trelloClient'
 import { Heading } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
-function EnkeltKvadrat({ kortet, height, width }: { kortet: TrelloCard; height: string; width: string }): ReactElement {
+function EnkeltKvadrat({ kortet, infoskjerm }: { kortet: TrelloCard; infoskjerm?: boolean }): ReactElement {
+    const klasser = infoskjerm ? 'w-[50vw] h-[50vh]' : 'w-[30rem] h-[30rem]'
+    const padding = infoskjerm ? 'p-9' : 'p-4'
     return (
-        <div className={`flex-item border border-gray-200 bg-gray-50 ${width} ${height}`}>
-            <Heading level="2" size="medium" className="bg-blue-100 p-4" spacing>
+        <div className={`flex-item border border-gray-200 bg-gray-50 ${klasser}`}>
+            <Heading level="2" size="medium" className={`bg-blue-100 ${padding}`} spacing>
                 {kortet.name}
             </Heading>
-            <div className="px-4">
+            <div className={padding}>
                 <MarkdownAksel kortet={kortet} />
             </div>
         </div>
     )
 }
 
-export function OkrKortRendring({
-    list,
-    height,
-    width,
-    noHeading,
-}: {
-    list: ListMedCards
-    height: string
-    width: string
-    noHeading?: boolean
-}): ReactElement {
+export function OkrKortRendring({ list, infoskjerm }: { list: ListMedCards; infoskjerm?: boolean }): ReactElement {
     return (
         <>
-            {!noHeading && (
+            {!infoskjerm && (
                 <div className="flex justify-center">
                     <Heading size="large" spacing>
                         {list.name}
@@ -38,12 +30,12 @@ export function OkrKortRendring({
                 </div>
             )}
             <div className="flex justify-center">
-                <EnkeltKvadrat kortet={list.cards[0]} height={height} width={width} />
-                <EnkeltKvadrat kortet={list.cards[1]} height={height} width={width} />
+                <EnkeltKvadrat kortet={list.cards[0]} infoskjerm={infoskjerm} />
+                <EnkeltKvadrat kortet={list.cards[1]} infoskjerm={infoskjerm} />
             </div>
             <div className="flex justify-center">
-                <EnkeltKvadrat kortet={list.cards[2]} height={height} width={width} />
-                <EnkeltKvadrat kortet={list.cards[3]} height={height} width={width} />
+                <EnkeltKvadrat kortet={list.cards[2]} infoskjerm={infoskjerm} />
+                <EnkeltKvadrat kortet={list.cards[3]} infoskjerm={infoskjerm} />
             </div>
         </>
     )

@@ -2,13 +2,14 @@ import { ReactElement } from 'react'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
 import { OkrKortRendring } from '@/components/okrKortRendring'
+import { Heading } from '@/components/clientAksel'
 
 export default async function Docs({ params }: { params: { slug?: string[] } }): Promise<ReactElement> {
     const list = await hentTrelloKort(process.env['TRELLO_OKR_BOARD'])
 
     const slug = params.slug
     if (!slug) {
-        return <OkrKortRendring list={list[0]} width="w-[30rem]" height="h-[30rem]" />
+        return <OkrKortRendring list={list[0]} />
     }
 
     if (slug.length == 1) {
@@ -21,12 +22,12 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
             )
         }
 
-        return <OkrKortRendring list={lista} width="w-[30rem]" height="h-[30rem]" />
+        return <OkrKortRendring list={lista} />
     }
 
     return (
         <main>
-            <h1>404 rart sted</h1>
+            <Heading size="medium">404 rart sted</Heading>
         </main>
     )
 }
