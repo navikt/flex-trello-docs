@@ -23,8 +23,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                             '--a-font-line-height-large': '1.75rem',
                             '--a-font-size-medium': '1.5rem',
                             '--a-font-line-height-medium': '1.5rem',
-                            '--a-font-size-heading-medium': '2rem',
-                            '--a-font-line-height-heading-medium': '2rem',
+                            '--a-font-size-heading-medium': '3.5rem',
+                            '--a-font-line-height-heading-medium': '3rem',
                         } as React.CSSProperties
                     }
                 >
