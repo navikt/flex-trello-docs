@@ -6,5 +6,5 @@ import { OkrKortRendring } from '@/components/okrKortRendring'
 export default async function Docs(): Promise<ReactElement> {
     const list = await hentTrelloKort(process.env['TRELLO_OKR_BOARD'])
 
-    return <OkrKortRendring list={list[0]} width="w-[40rem]" height="h-[30rem]" />
+    return <OkrKortRendring noHeading={true} list={list[0]} width="w-[50vw]" height="h-[50vh]" />
 }

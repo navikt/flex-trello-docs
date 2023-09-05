@@ -27,7 +27,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                             '--a-font-line-height-heading-medium': '2rem',
                         } as React.CSSProperties
                     }
-                    className="py-20 px-20"
                 >
                     {children}
                 </main>

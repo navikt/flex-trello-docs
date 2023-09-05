@@ -21,18 +21,22 @@ export function OkrKortRendring({
     list,
     height,
     width,
+    noHeading,
 }: {
     list: ListMedCards
     height: string
     width: string
+    noHeading?: boolean
 }): ReactElement {
     return (
         <>
-            <div className="flex justify-center">
-                <Heading size="large" spacing>
-                    {list.name}
-                </Heading>
-            </div>
+            {!noHeading && (
+                <div className="flex justify-center">
+                    <Heading size="large" spacing>
+                        {list.name}
+                    </Heading>
+                </div>
+            )}
             <div className="flex justify-center">
                 <EnkeltKvadrat kortet={list.cards[0]} height={height} width={width} />
                 <EnkeltKvadrat kortet={list.cards[1]} height={height} width={width} />
