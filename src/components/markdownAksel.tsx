@@ -10,7 +10,43 @@ export function MarkdownAksel({ kortet }: { kortet: TrelloCard }): ReactElement 
         <MDXRemote
             source={kortet.desc}
             components={{
-                p: (props) => <BodyLong spacing>{props.children}</BodyLong>,
+                p: (props) => {
+                    // eslint-disable-next-line
+                    const renderChildren = (): any => {
+                        if (Array.isArray(props.children)) {
+                            return props.children.map((child, index) => {
+                                if (typeof child === 'string') {
+                                    const parts = child.split('\n').map((part, idx) =>
+                                        idx === 0 ? (
+                                            part
+                                        ) : (
+                                            <>
+                                                <br />
+                                                {part}
+                                            </>
+                                        ),
+                                    )
+                                    return <React.Fragment key={index}>{parts}</React.Fragment>
+                                }
+                                return child
+                            })
+                        } else if (typeof props.children === 'string') {
+                            const parts = props.children.split('\n').map((part, idx) =>
+                                idx === 0 ? (
+                                    part
+                                ) : (
+                                    <>
+                                        <br />
+                                        {part}
+                                    </>
+                                ),
+                            )
+                            return parts
+                        }
+                        return props.children
+                    }
+                    return <BodyLong spacing>{renderChildren()}</BodyLong>
+                },
                 h2: (props) => (
                     <Heading size="medium" level="2" spacing>
                         {props.children}
