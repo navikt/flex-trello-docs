@@ -8,8 +8,7 @@ import { verifyUserLoggedIn } from '@/auth/authentication'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
     await verifyUserLoggedIn()
-    const trellobard = process.env['TRELLO_BOARD']
-    const list = await hentTrelloKort(trellobard)
+    const list = await hentTrelloKort(process.env['TRELLO_BOARD'])
     const førsteListe = list[0]
     const deAndreListene = list.slice(1)
 

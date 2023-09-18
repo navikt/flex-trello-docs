@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
+import Link from 'next/link'
 
 import { ListMedCards, TrelloCard } from '@/trello/trelloClient'
-import { Heading } from '@/components/clientAksel'
+import { AkselLink, EditIcon, Heading } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
 function EnkeltKvadrat({ kortet, infoskjerm }: { kortet: TrelloCard; infoskjerm?: boolean }): ReactElement {
@@ -10,8 +11,22 @@ function EnkeltKvadrat({ kortet, infoskjerm }: { kortet: TrelloCard; infoskjerm?
     return (
         <div className={`flex-item border border-gray-200 bg-gray-50 ${klasser}`}>
             <Heading level="2" size="medium" className={`bg-blue-100 ${padding}`} spacing>
-                {kortet.name}
+                <div className="flex justify-between">
+                    {kortet.name}
+                    {!infoskjerm && (
+                        <AkselLink
+                            as={Link}
+                            className="text-gray-500 text-right"
+                            target="_blank"
+                            underline={false}
+                            href={kortet.shortUrl}
+                        >
+                            <EditIcon className="inline" title="a11y-title" fontSize="1.5rem" />
+                        </AkselLink>
+                    )}
+                </div>
             </Heading>
+
             <div className={padding}>
                 <MarkdownAksel kortet={kortet} />
             </div>
