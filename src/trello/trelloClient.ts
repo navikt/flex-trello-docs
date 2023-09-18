@@ -20,7 +20,7 @@ export interface ListMedCards extends TrelloList {
 
 const token = process.env['TRELLO_TOKEN']
 const key = process.env['TRELLO_KEY']
-const revalidateSeconds = 10
+const revalidateSeconds = 2
 
 async function hentTrellokort(board: string | undefined): Promise<TrelloCard[]> {
     if (!board || !token || !key) {
