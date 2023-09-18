@@ -16,7 +16,7 @@ function EnkeltKvadrat({ kortet, infoskjerm }: { kortet: TrelloCard; infoskjerm?
                     {!infoskjerm && (
                         <AkselLink
                             as={Link}
-                            className="text-gray-500 text-right"
+                            className="text-gray-400 text-right"
                             target="_blank"
                             underline={false}
                             href={kortet.shortUrl}
@@ -52,6 +52,28 @@ export function OkrKortRendring({ list, infoskjerm }: { list: ListMedCards; info
                 <EnkeltKvadrat kortet={list.cards[2]} infoskjerm={infoskjerm} />
                 <EnkeltKvadrat kortet={list.cards[3]} infoskjerm={infoskjerm} />
             </div>
+            {!infoskjerm && list.cards.length > 4 && (
+                <div className="p-4 bg-gray-100 mt-4">
+                    <Heading level="2" size="medium" spacing>
+                        <div className="flex justify-between">
+                            {list.cards[4].name}
+                            {!infoskjerm && (
+                                <AkselLink
+                                    as={Link}
+                                    className="text-gray-400 text-right p-0"
+                                    target="_blank"
+                                    underline={false}
+                                    href={list.cards[4].shortUrl}
+                                >
+                                    <EditIcon className="inline" title="a11y-title" fontSize="1.5rem" />
+                                </AkselLink>
+                            )}
+                        </div>
+                    </Heading>
+
+                    <MarkdownAksel kortet={list.cards[4]} />
+                </div>
+            )}
         </>
     )
 }
