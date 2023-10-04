@@ -2,6 +2,8 @@ import '../../styles/globals.css'
 import { ReactElement } from 'react'
 import Link from 'next/link'
 
+import apper from '../../apper.json'
+
 import { hentTrelloKort } from '@/trello/trelloClient'
 import { AkselLink, Label } from '@/components/clientAksel'
 import { verifyUserLoggedIn } from '@/auth/authentication'
@@ -51,6 +53,21 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                                 ))}
                             </div>
                         ))}
+
+                        <div className=" space-y-2">
+                            <Label as="p">Apper</Label>
+                            {apper.apper.map((c, idx) => (
+                                <AkselLink
+                                    className="block pl-4"
+                                    underline={false}
+                                    as={Link}
+                                    key={idx}
+                                    href={'/' + 'apper' + '/' + c}
+                                >
+                                    {c}
+                                </AkselLink>
+                            ))}
+                        </div>
                     </div>
                     <div className="flex-1 max-w-5xl mx-auto p-10">
                         <main>{children}</main>

@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
 import { TrelloKortRendring } from '@/components/trelloKortRendring'
+import { GithubRepoReadme } from '@/components/githubRepoReadme'
 
 export default async function Docs({ params }: { params: { slug?: string[] } }): Promise<ReactElement> {
     const list = await hentTrelloKort(process.env['TRELLO_BOARD'])
@@ -22,6 +23,9 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
         }
 
         return <TrelloKortRendring kortet={kortet} />
+    }
+    if (slug[0] == 'apper') {
+        return <GithubRepoReadme repo={slug[1]} />
     }
     const lista = list.find((k) => k.url === slug[0])
 
