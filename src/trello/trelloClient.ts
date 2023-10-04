@@ -48,10 +48,10 @@ export function urlFriendly(str: string): string {
     return str
         .toLowerCase()
         .replace(/ /g, '-')
-        .replaceAll('?', '')
         .replaceAll('æ', 'a')
         .replaceAll('ø', 'o')
         .replaceAll('å', 'a')
+        .replace(/[^a-zA-Z0-9-]/g, '')
 }
 
 export async function hentTrelloKort(board: string | undefined): Promise<ListMedCards[]> {
