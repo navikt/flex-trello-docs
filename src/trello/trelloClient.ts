@@ -42,7 +42,7 @@ async function hentTrelloLister(board: string | undefined): Promise<TrelloList[]
     return await a.json()
 }
 
-function urlFriendly(str: string): string {
+export function urlFriendly(str: string): string {
     return str
         .toLowerCase()
         .replace(/ /g, '-')
