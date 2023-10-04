@@ -3,7 +3,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 
 import { AkselLink, AkselList, AkselListItem, BodyLong, Heading } from '@/components/clientAksel'
-import { TrelloCard } from '@/trello/trelloClient'
 
 export function MarkdownAksel({ md }: { md: string }): ReactElement {
     return (

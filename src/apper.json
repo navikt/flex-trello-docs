@@ -1,7 +1,1 @@
-{
-  "apper": [
-    "sykepengesoknad-backend",
-    "sykepengesoknad-frontend"
-  ]
-}
-
+["sykepengesoknad-backend", "sykepengesoknad-frontend"]

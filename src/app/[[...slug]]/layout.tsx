@@ -5,7 +5,7 @@ import Link from 'next/link'
 import apper from '../../apper.json'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
-import { AkselLink, Label } from '@/components/clientAksel'
+import { AkselLink, ReadMore } from '@/components/clientAksel'
 import { verifyUserLoggedIn } from '@/auth/authentication'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
@@ -38,8 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                             )
                         })}
                         {deAndreListene.map((l) => (
-                            <div key={l.id} className=" space-y-2">
-                                <Label as="p">{l.name}</Label>
+                            <ReadMore header={l.name} key={l.id}>
                                 {l.cards.map((c) => (
                                     <AkselLink
                                         className="block pl-4"
@@ -51,23 +50,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                                         {c.name}
                                     </AkselLink>
                                 ))}
-                            </div>
+                            </ReadMore>
                         ))}
 
-                        <div className=" space-y-2">
-                            <Label as="p">Apper</Label>
-                            {apper.apper.map((c, idx) => (
-                                <AkselLink
-                                    className="block pl-4"
-                                    underline={false}
-                                    as={Link}
-                                    key={idx}
-                                    href={'/' + 'apper' + '/' + c}
-                                >
-                                    {c}
-                                </AkselLink>
-                            ))}
-                        </div>
+                        <ReadMore header="Apper">
+                            <div className=" space-y-2">
+                                {apper.map((c, idx) => (
+                                    <AkselLink
+                                        className="block pl-4"
+                                        underline={false}
+                                        as={Link}
+                                        key={idx}
+                                        href={'/' + 'apper' + '/' + c}
+                                    >
+                                        {c}
+                                    </AkselLink>
+                                ))}
+                            </div>
+                        </ReadMore>
                     </div>
                     <div className="flex-1 max-w-5xl mx-auto p-10">
                         <main>{children}</main>
