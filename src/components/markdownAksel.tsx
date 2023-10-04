@@ -51,6 +51,11 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
                         {props.children}
                     </Heading>
                 ),
+                h1: (props) => (
+                    <Heading size="large" level="1" spacing>
+                        {props.children}
+                    </Heading>
+                ),
                 h3: (props) => (
                     <Heading size="small" level="3">
                         {props.children}

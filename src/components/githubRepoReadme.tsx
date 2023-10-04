@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 
-import { Heading } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
 export async function GithubRepoReadme({ repo }: { repo: string }): Promise<ReactElement> {
@@ -12,12 +11,5 @@ export async function GithubRepoReadme({ repo }: { repo: string }): Promise<Reac
 
     const readme = await readmeResponse.text()
 
-    return (
-        <>
-            <Heading size="large" spacing>
-                {repo}
-            </Heading>
-            {readme && <MarkdownAksel md={readme} />}
-        </>
-    )
+    return <>{readme && <MarkdownAksel md={readme} />}</>
 }

@@ -6,8 +6,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-h1:not(.navds-heading)::after {
-    content: 'Ikke bruk Heading 1 i trello, bruk Heading 2. Kortets tittel er Heading 1';
-    color: red;
-}
