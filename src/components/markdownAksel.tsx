@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 
-import { AkselLink, AkselList, AkselListItem, BodyLong, Heading } from '@/components/clientAksel'
+import { AkselLink, AkselList, AkselListItem, BodyLong, Heading, LinkIcon } from '@/components/clientAksel'
 import { Bilde } from '@/components/bilde'
+import { urlFriendly } from '@/trello/trelloClient'
 
 export function MarkdownAksel({ md }: { md: string }): ReactElement {
     return (
@@ -47,21 +48,10 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
                     }
                     return <BodyLong spacing>{renderChildren()}</BodyLong>
                 },
-                h2: (props) => (
-                    <Heading size="medium" level="2" spacing>
-                        {props.children}
-                    </Heading>
-                ),
-                h1: (props) => (
-                    <Heading size="large" level="1" spacing>
-                        {props.children}
-                    </Heading>
-                ),
-                h3: (props) => (
-                    <Heading size="small" level="3">
-                        {props.children}
-                    </Heading>
-                ),
+                h1: (props) => <Tittel level="1">{props.children}</Tittel>,
+                h2: (props) => <Tittel level="2">{props.children}</Tittel>,
+                h3: (props) => <Tittel level="3">{props.children}</Tittel>,
+                h4: (props) => <Tittel level="4">{props.children}</Tittel>,
                 a: (props) => (
                     <AkselLink underline={false} target="_blank" as={Link} href={props.href}>
                         {props.children}
@@ -83,5 +73,17 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
                 code: (props) => <span className="bg-gray-200" {...props} />,
             }}
         />
+    )
+}
+
+function Tittel(props: { children: React.ReactNode; level: '1' | '2' | '3' | '4' }): ReactElement {
+    const anker = urlFriendly(props.children ? props.children.toString() : '')
+    return (
+        <Heading id={anker} level={props.level} size={props.level == '1' ? 'large' : 'medium'} spacing>
+            {props.children}
+            <a href={'#' + anker}>
+                <LinkIcon className="inline ml-2" title="a11y-title" fontSize="1.5rem" />
+            </a>
+        </Heading>
     )
 }
