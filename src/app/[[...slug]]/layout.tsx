@@ -91,7 +91,7 @@ export default async function RootLayout({
         l.cards.forEach((c) => {
             lenker.push({
                 name: c.name,
-                url: l.url + '/' + c.url,
+                url: '/' + l.url + '/' + c.url,
                 mapper: [l.name],
             })
         })
