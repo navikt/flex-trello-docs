@@ -1,1 +1,1 @@
-["sykepengesoknad-backend", "sykepengesoknad-frontend"]
+[{ "name": "sykepengesoknad-frontend" }, { "name": "sykepengesoknad-backend" }, { "name": "sykepengesoknad-altinn" }]

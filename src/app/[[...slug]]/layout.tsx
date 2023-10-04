@@ -55,17 +55,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
                         <ReadMore header="Apper">
                             <div className=" space-y-2">
-                                {apper.map((c, idx) => (
-                                    <AkselLink
-                                        className="block pl-4"
-                                        underline={false}
-                                        as={Link}
-                                        key={idx}
-                                        href={'/' + 'apper' + '/' + c}
-                                    >
-                                        {c}
-                                    </AkselLink>
-                                ))}
+                                {apper
+                                    .map((c) => c.name)
+                                    .sort()
+                                    .map((c, idx) => (
+                                        <AkselLink
+                                            className="block pl-4"
+                                            underline={false}
+                                            as={Link}
+                                            key={idx}
+                                            href={'/' + 'apper' + '/' + c}
+                                        >
+                                            {c}
+                                        </AkselLink>
+                                    ))}
                             </div>
                         </ReadMore>
                     </div>
