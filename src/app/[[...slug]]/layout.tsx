@@ -142,7 +142,7 @@ export default async function RootLayout({
                 <meta name="robots" content="noindex" />
             </head>
             <body>
-                <div className="min-h-screen bg-gray-100 flex">
+                <div className="min-h-screen bg-gray-50 flex">
                     <div className="w-[26rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
                         <LenkeRendring lenker={lenker} slug={params.slug || []} aktiv={true} />
                     </div>
