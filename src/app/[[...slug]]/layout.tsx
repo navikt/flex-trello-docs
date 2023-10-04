@@ -143,7 +143,7 @@ export default async function RootLayout({
             </head>
             <body>
                 <div className="min-h-screen bg-gray-100 flex">
-                    <div className="w-[22rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
+                    <div className="w-[26rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
                         <LenkeRendring lenker={lenker} slug={params.slug || []} aktiv={true} />
                     </div>
                     <div className="flex-1 max-w-5xl mx-auto p-10">
