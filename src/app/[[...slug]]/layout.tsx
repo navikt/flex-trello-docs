@@ -18,7 +18,17 @@ interface Lenke {
     mappe?: string
 }
 
-function LenkeRendring({ lenker, slug, aktiv }: { lenker: Lenke[]; slug: string[]; aktiv: boolean }): ReactElement {
+function LenkeRendring({
+    lenker,
+    slug,
+    aktiv,
+    level,
+}: {
+    lenker: Lenke[]
+    slug: string[]
+    aktiv: boolean
+    level: number
+}): ReactElement {
     const underlenker = lenker
         .filter((l) => l.mapper.length > 0)
         .map((l) => {
@@ -69,10 +79,10 @@ function LenkeRendring({ lenker, slug, aktiv }: { lenker: Lenke[]; slug: string[
             })}
 
             {Array.from(underlenker.keys()).map((k, i) => {
-                const aktiv = urlFriendly(k) == slug[0]
+                const aktivHer = urlFriendly(k) == slug[level] && aktiv
                 return (
-                    <ReadMore header={k} key={i} defaultOpen={aktiv}>
-                        <LenkeRendring lenker={underlenker.get(k)!} slug={slug} aktiv={aktiv} />
+                    <ReadMore header={k} key={i} defaultOpen={aktivHer}>
+                        <LenkeRendring lenker={underlenker.get(k)!} slug={slug} aktiv={aktivHer} level={level + 1} />
                     </ReadMore>
                 )
             })}
@@ -144,7 +154,7 @@ export default async function RootLayout({
             <body>
                 <div className="min-h-screen bg-gray-50 flex">
                     <div className="w-[26rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
-                        <LenkeRendring lenker={lenker} slug={params.slug || []} aktiv={true} />
+                        <LenkeRendring lenker={lenker} slug={params.slug || []} aktiv={true} level={0} />
                     </div>
                     <div className="flex-1 max-w-5xl mx-auto p-10">
                         <main>{children}</main>
