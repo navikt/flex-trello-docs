@@ -14,6 +14,7 @@ interface Lenke {
     name: string
     url: string
     mapper: string[]
+    urlMapper: string[]
     mappe?: string
 }
 
@@ -95,26 +96,30 @@ export default async function RootLayout({
         name: list[0].cards[0].name,
         url: '/',
         mapper: [],
+        urlMapper: [],
     })
     lenker.push({
         name: 'OKR Board',
         url: '/okr-board/',
         mapper: [],
+        urlMapper: [],
     })
     list[0].cards.forEach((c, i) => {
         if (i > 0)
             lenker.push({
                 name: c.name,
-                url: '/' + c.url,
+                url: c.url,
                 mapper: [],
+                urlMapper: [],
             })
     })
     list.slice(1).forEach((l) => {
         l.cards.forEach((c) => {
             lenker.push({
                 name: c.name,
-                url: '/' + l.url + '/' + c.url,
-                mapper: [l.name],
+                url: c.url,
+                mapper: c.mapper,
+                urlMapper: c.urlMapper,
             })
         })
     })
@@ -126,6 +131,7 @@ export default async function RootLayout({
                 name: a,
                 url: '/apper/' + a,
                 mapper: ['Apper'],
+                urlMapper: ['apper'],
             })
         })
 
