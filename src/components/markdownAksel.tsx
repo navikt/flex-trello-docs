@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 
 import { AkselLink, AkselList, AkselListItem, BodyLong, Heading } from '@/components/clientAksel'
+import { Bilde } from '@/components/bilde'
 
 export function MarkdownAksel({ md }: { md: string }): ReactElement {
     return (
@@ -76,6 +77,7 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
                         {props.children}
                     </AkselList>
                 ),
+                img: (props) => <Bilde {...props} />,
                 li: (props) => <AkselListItem>{props.children}</AkselListItem>,
                 pre: (props) => <pre className="p-4 bg-gray-300 mb-4 rounded-xl" {...props} />,
                 code: (props) => <code className="bg-gray-300 p-0.5 rounded" {...props} />,

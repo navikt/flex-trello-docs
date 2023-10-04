@@ -8,7 +8,19 @@ import { hentTrelloKort } from '@/trello/trelloClient'
 import { AkselLink, ReadMore } from '@/components/clientAksel'
 import { verifyUserLoggedIn } from '@/auth/authentication'
 
-export default async function RootLayout({ children }: { children: React.ReactNode }): Promise<ReactElement> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface Lenke {
+    name: string
+    url: string
+    mapper: string[]
+}
+
+export default async function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+    params: { slug?: string[] }
+}): Promise<ReactElement> {
     await verifyUserLoggedIn()
     const list = await hentTrelloKort(process.env['TRELLO_BOARD'])
     const førsteListe = list[0]
