@@ -46,6 +46,7 @@ spec:
       external:
         - host: api.trello.com
         - host: trello.com
+        - host: raw.githubusercontent.com
   envFrom:
     - secret: flex-trello-docs-trello-secrets
   env:
