@@ -12,7 +12,7 @@ export function TrelloKortRendring({ kortet }: { kortet: TrelloCard }): ReactEle
                 {kortet.name}{' '}
             </Heading>
 
-            <MarkdownAksel kortet={kortet} />
+            <MarkdownAksel md={kortet.desc} />
             <AkselLink as={Link} className="text-gray-500" target="_blank" underline={false} href={kortet.shortUrl}>
                 {'Sist redigert ' + kortet.dateLastActivity.slice(0, 10)}{' '}
                 <EditIcon className="inline" title="a11y-title" fontSize="1.5rem" />

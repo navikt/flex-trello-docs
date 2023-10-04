@@ -28,7 +28,7 @@ function EnkeltKvadrat({ kortet, infoskjerm }: { kortet: TrelloCard; infoskjerm?
             </Heading>
 
             <div className={padding}>
-                <MarkdownAksel kortet={kortet} />
+                <MarkdownAksel md={kortet.desc} />
             </div>
         </div>
     )
@@ -71,7 +71,7 @@ export function OkrKortRendring({ list, infoskjerm }: { list: ListMedCards; info
                         </div>
                     </Heading>
 
-                    <MarkdownAksel kortet={list.cards[4]} />
+                    <MarkdownAksel md={list.cards[4].desc} />
                 </div>
             )}
         </>
