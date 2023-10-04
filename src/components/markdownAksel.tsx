@@ -72,6 +72,8 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
                     </AkselList>
                 ),
                 li: (props) => <AkselListItem>{props.children}</AkselListItem>,
+                pre: (props) => <pre className="p-4 bg-gray-300 mb-4 rounded-xl" {...props} />,
+                code: (props) => <code className="bg-gray-300 p-0.5 rounded" {...props} />,
             }}
         />
     )
