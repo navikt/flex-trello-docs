@@ -81,9 +81,25 @@ function LenkeRendring({
             {Array.from(underlenker.keys()).map((k, i) => {
                 const aktivHer = urlFriendly(k) == slug[level] && aktiv
                 return (
-                    <ReadMore header={k} key={i} defaultOpen={aktivHer}>
-                        <LenkeRendring lenker={underlenker.get(k)!} slug={slug} aktiv={aktivHer} level={level + 1} />
-                    </ReadMore>
+                    <div
+                        key={i}
+                        style={
+                            {
+                                '--ac-read-more-line': 'var(--a-transparent)',
+                            } as React.CSSProperties
+                        }
+                    >
+                        <ReadMore header={k} defaultOpen={aktivHer}>
+                            <div className="space-y-2">
+                                <LenkeRendring
+                                    lenker={underlenker.get(k)!}
+                                    slug={slug}
+                                    aktiv={aktivHer}
+                                    level={level + 1}
+                                />
+                            </div>
+                        </ReadMore>
+                    </div>
                 )
             })}
         </>
@@ -157,7 +173,7 @@ export default async function RootLayout({
             </head>
             <body>
                 <div className="min-h-screen bg-gray-50 flex">
-                    <div className="w-[26rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-4">
+                    <div className="w-[26rem] bg-white py-10 pl-10 pr-5 shadow-md space-y-2">
                         <LenkeRendring lenker={lenker} slug={params.slug || []} aktiv={true} level={0} />
                     </div>
                     <div className="flex-1 max-w-5xl mx-auto p-10">
