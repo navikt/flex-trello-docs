@@ -5,6 +5,7 @@ ENV NODE_ENV production
 COPY /next.config.js ./
 COPY /.next ./.next
 COPY /node_modules ./node_modules
+COPY /public ./public
 
 ENV PORT=8080
 
