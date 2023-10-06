@@ -57,16 +57,8 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
                         {props.children}
                     </AkselLink>
                 ),
-                ul: (props) => (
-                    <AkselList as="ul" size="small">
-                        {props.children}
-                    </AkselList>
-                ),
-                ol: (props) => (
-                    <AkselList as="ol" size="small">
-                        {props.children}
-                    </AkselList>
-                ),
+                ul: (props) => <AkselList as="ul">{props.children}</AkselList>,
+                ol: (props) => <AkselList as="ol">{props.children}</AkselList>,
                 img: (props) => <Bilde {...props} />,
                 li: (props) => <AkselListItem>{props.children}</AkselListItem>,
                 pre: (props) => <pre className="p-4 bg-gray-200 mb-4 rounded-xl" {...props} />,
