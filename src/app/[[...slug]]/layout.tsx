@@ -16,6 +16,7 @@ interface Lenke {
     mapper: string[]
     urlMapper: string[]
     mappe?: string
+    trengerArbeid?: boolean
 }
 
 function LenkeRendring({
@@ -73,7 +74,7 @@ function LenkeRendring({
                         key={index}
                         href={l.url}
                     >
-                        {l.name}
+                        {l.name + (l.trengerArbeid ? ' 🚧' : '')}
                     </AkselLink>
                 )
             })}
@@ -137,6 +138,7 @@ export default async function RootLayout({
                 url: c.url,
                 mapper: [],
                 urlMapper: [],
+                trengerArbeid: c.trengerArbeid,
             })
     })
     list.slice(1).forEach((l) => {
@@ -146,6 +148,7 @@ export default async function RootLayout({
                 url: c.url,
                 mapper: c.mapper,
                 urlMapper: c.urlMapper,
+                trengerArbeid: c.trengerArbeid,
             })
         })
     })

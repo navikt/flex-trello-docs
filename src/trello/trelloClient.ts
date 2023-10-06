@@ -14,6 +14,8 @@ export interface TrelloCard {
     dateLastActivity: string
     mapper: string[]
     urlMapper: string[]
+    labels: { name: string }[]
+    trengerArbeid: boolean
 }
 
 export interface ListMedCards extends TrelloList {
@@ -86,6 +88,8 @@ export async function hentTrelloKort(board: string | undefined): Promise<ListMed
                         url: url(),
                         mapper: mapper,
                         urlMapper: mapper.map((m) => urlFriendly(m)),
+                        trengerArbeid:
+                            k.labels.some((l) => l.name.toLowerCase() === 'trenger arbeid') || k.desc.length < 10,
                     }
                 }),
         }
