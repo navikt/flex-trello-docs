@@ -3,6 +3,7 @@
 import {
     Heading as DsHeading,
     BodyLong as DSBodyLong,
+    BodyShort as DSBodyShort,
     Label as DSLabel,
     Link,
     List,
@@ -15,6 +16,7 @@ export const EditIcon = DocPencilIcon
 export const LinkIcon = DSLinkIcon
 export const Heading = DsHeading
 export const BodyLong = DSBodyLong
+export const BodyShort = DSBodyShort
 export const Label = DSLabel
 export const AkselLink = Link
 export const AkselList = List
