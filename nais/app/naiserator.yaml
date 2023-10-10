@@ -52,6 +52,8 @@ spec:
   env:
     - name: TRELLO_OKR_BOARD
       value: 0gO6UCsS
+    - name: TRELLO_RETRO_BOARD
+      value: Tx2MZJyC
   filesFrom:
     - emptyDir:
         medium: Memory

@@ -6,6 +6,8 @@ interface TrelloList {
 
 export interface TrelloCard {
     id: string
+    idMembers: string[]
+    members: string[]
     name: string
     url: string
     desc: string
@@ -46,6 +48,21 @@ async function hentTrelloLister(board: string | undefined): Promise<TrelloList[]
     return await a.json()
 }
 
+export async function hentKortMedlemNavn(memberId: string): Promise<string> {
+    if (!token || !key) {
+        throw Error('Missing trello envs ')
+    }
+
+    const response = await fetch(`https://api.trello.com/1/members/${memberId}?key=${key}&token=${token}`)
+    const data = await response.json()
+
+    if (data && data.fullName) {
+        return data.fullName
+    }
+
+    throw Error('Failed to fetch member name')
+}
+
 export function urlFriendly(str: string): string {
     return str
         .toLowerCase()
@@ -59,13 +76,11 @@ export function urlFriendly(str: string): string {
 export async function hentTrelloKort(board: string | undefined): Promise<ListMedCards[]> {
     const kort = await hentTrellokort(board)
     const lister = await hentTrelloLister(board)
-    const listerMedKort = lister.map((liste, i) => {
-        return {
-            ...liste,
-            url: urlFriendly(liste.name),
-            cards: kort
+    return await Promise.all(
+        lister.map(async (liste, i) => {
+            const cardPromises = kort
                 .filter((k) => k.idList === liste.id)
-                .map((k, j) => {
+                .map(async (k, j) => {
                     const splittetNavn = k.name.split('/').map((s) => s.trim())
                     const siste = splittetNavn.pop() || ''
 
@@ -82,17 +97,26 @@ export async function hentTrelloKort(board: string | undefined): Promise<ListMed
                         return '/' + [...mapper, siste].map((m) => urlFriendly(m)).join('/')
                     }
 
+                    const memberNames = k.idMembers ? await Promise.all(k.idMembers.map(hentKortMedlemNavn)) : []
+
                     return {
                         ...k,
                         name: siste,
                         url: url(),
                         mapper: mapper,
                         urlMapper: mapper.map((m) => urlFriendly(m)),
+                        members: memberNames,
                         trengerArbeid:
                             k.labels.some((l) => l.name.toLowerCase() === 'trenger arbeid') || k.desc.length < 10,
                     }
-                }),
-        }
-    })
-    return listerMedKort
+                })
+            const cards = await Promise.all(cardPromises)
+
+            return {
+                ...liste,
+                url: urlFriendly(liste.name),
+                cards: cards,
+            }
+        }),
+    )
 }
