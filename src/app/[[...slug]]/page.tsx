@@ -26,7 +26,6 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
         case 'retro-board': {
             const retrokortene = await hentTrelloKort(process.env['TRELLO_RETRO_BOARD'])
             const kortet = slug.length > 1 ? retrokortene.find((k) => k.url === slug[1]) : retrokortene[0]
-            console.log('kortet', kortet) // eslint-disable-line
             if (kortet) {
                 return <RetroKortRendring list={kortet} />
             }
