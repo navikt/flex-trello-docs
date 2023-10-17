@@ -14,7 +14,7 @@
         "format": "npm run prettier:write && npm run lint:fix"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "^5.6.5",
+        "@navikt/aksel-icons": "^5.7.2",
         "@navikt/ds-css": "^5.7.2",
         "@navikt/ds-react": "^5.7.0",
         "@navikt/ds-tailwind": "5.7.2",
