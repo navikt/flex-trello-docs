@@ -18,7 +18,7 @@
         "@navikt/ds-css": "^5.7.2",
         "@navikt/ds-react": "^5.7.2",
         "@navikt/ds-tailwind": "5.7.2",
-        "@navikt/ds-tokens": "^5.7.2",
+        "@navikt/ds-tokens": "^5.7.3",
         "@navikt/next-auth-wonderwall": "^1.5.0",
         "@navikt/next-logger": "^1.19.0",
         "@next/mdx": "^13.5.4",
