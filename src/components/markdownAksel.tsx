@@ -71,11 +71,18 @@ export function MarkdownAksel({ md }: { md: string }): ReactElement {
 function Tittel(props: { children: React.ReactNode; level: '1' | '2' | '3' | '4' }): ReactElement {
     const anker = urlFriendly(props.children ? props.children.toString() : '')
     return (
-        <Heading id={anker} level={props.level} size={props.level == '1' ? 'large' : 'medium'} spacing>
+        <Heading id={anker} level={props.level} size={size(props.level)} spacing>
             {props.children}
             <a href={'#' + anker}>
                 <LinkIcon className="inline ml-2" title="a11y-title" fontSize="1.5rem" />
             </a>
         </Heading>
     )
+}
+
+function size(level: string): 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall' {
+    if (level === '1') return 'xlarge'
+    if (level === '2') return 'large'
+    if (level === '3') return 'medium'
+    return 'small'
 }
