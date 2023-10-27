@@ -4,7 +4,7 @@ metadata:
   name: flex-trello-docs
   namespace: flex
   annotations:
-    snorlax.nais.io/enabled: "false"
+    snorlax.nais.io/enabled: 'false'
   labels:
     team: flex
 spec:
