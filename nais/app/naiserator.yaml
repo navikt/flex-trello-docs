@@ -59,4 +59,4 @@ spec:
   filesFrom:
     - emptyDir:
         medium: Memory
-      mountPath: /app/.next/cache
+      mountPath: /.next/cache
