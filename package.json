@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "@navikt/aksel-icons": "^5.9.2",
-        "@navikt/ds-css": "^5.10.2",
+        "@navikt/ds-css": "^5.10.3",
         "@navikt/ds-react": "^5.10.2",
         "@navikt/ds-tailwind": "5.10.2",
         "@navikt/ds-tokens": "^5.10.1",
