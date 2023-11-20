@@ -14,8 +14,8 @@ spec:
     - https://flex-docs.intern.dev.nav.no
     - https://flex-docs.ekstern.dev.nav.no
   replicas:
-    min: 1
-    max: 2
+    min: 2
+    max: 3
     cpuThresholdPercentage: 90
   azure:
     application:
@@ -42,7 +42,7 @@ spec:
     path: /api/internal/isAlive
   startup:
     path: /api/internal/isAlive
-    initialDelay: 10
+    initialDelay: 60
   accessPolicy:
     outbound:
       external:
