@@ -17,7 +17,7 @@
         "@navikt/aksel-icons": "^5.10.3",
         "@navikt/ds-css": "^5.10.3",
         "@navikt/ds-react": "^5.10.2",
-        "@navikt/ds-tailwind": "5.10.3",
+        "@navikt/ds-tailwind": "5.10.4",
         "@navikt/ds-tokens": "^5.10.3",
         "@navikt/next-auth-wonderwall": "^1.5.0",
         "@navikt/next-logger": "^1.21.0",
