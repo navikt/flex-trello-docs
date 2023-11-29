@@ -16,7 +16,9 @@ spec:
   replicas:
     min: 2
     max: 3
-    cpuThresholdPercentage: 90
+    scalingStrategy:
+      cpu:
+        thresholdPercentage: 90
   azure:
     application:
       allowAllUsers: false
