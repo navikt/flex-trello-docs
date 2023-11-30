@@ -2,12 +2,12 @@ import '../../styles/globals.css'
 import { ReactElement } from 'react'
 import Link from 'next/link'
 
-import apper from '../../apper.json'
-
 import { hentTrelloKort, urlFriendly } from '@/trello/trelloClient'
 import { AkselLink, ReadMore } from '@/components/clientAksel'
 import { verifyUserLoggedIn } from '@/auth/authentication'
 import { arraysAreEqual } from '@/utlis/arrayEqual'
+
+import apper from '../../apper.json'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Lenke {

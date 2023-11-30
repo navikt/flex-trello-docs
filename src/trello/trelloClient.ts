@@ -1,3 +1,5 @@
+import pRetry from 'p-retry'
+
 interface TrelloList {
     id: string
     name: string
@@ -74,8 +76,18 @@ export function urlFriendly(str: string): string {
 }
 
 export async function hentTrelloKort(board: string | undefined): Promise<ListMedCards[]> {
-    const kort = await hentTrellokort(board)
-    const lister = await hentTrelloLister(board)
+    const kort = await pRetry(
+        async (): Promise<TrelloCard[]> => {
+            return hentTrellokort(board)
+        },
+        { retries: 5 },
+    )
+    const lister = await pRetry(
+        async (): Promise<TrelloList[]> => {
+            return hentTrelloLister(board)
+        },
+        { retries: 5 },
+    )
     return await Promise.all(
         lister.map(async (liste, i) => {
             const cardPromises = kort
