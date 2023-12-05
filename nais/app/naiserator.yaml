@@ -21,7 +21,7 @@ spec:
         thresholdPercentage: 90
   preStopHook:
     http:
-      path: api/internal/preStop
+      path: /api/internal/preStop
       port: 8080
   azure:
     application:
