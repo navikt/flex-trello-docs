@@ -1,6 +1,7 @@
 import { logger } from '@navikt/next-logger'
 
-export async function GET(): Promise<Response> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GET(request: Request): Promise<Response> {
     logger.info('Next.js server: received pre stop request, waiting for 10s before starting shutdown')
     // eslint-disable-next-line
     console.log('Next.js server: received pre stop request console, waiting for 10s before starting shutdown')
@@ -10,5 +11,5 @@ export async function GET(): Promise<Response> {
         }, 10_000)
     })
     logger.info('Next.js server: starting shutdown')
-    return Response.json({ message: 'ready for shutdown' })
+    return new Response('ready for shutdown', { status: 200 })
 }
