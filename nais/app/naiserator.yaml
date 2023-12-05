@@ -48,7 +48,7 @@ spec:
     path: /api/internal/isAlive
   startup:
     path: /api/internal/isAlive
-    initialDelay: 60
+    initialDelay: 10
   accessPolicy:
     outbound:
       external:
