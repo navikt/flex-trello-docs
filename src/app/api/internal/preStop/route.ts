@@ -2,6 +2,8 @@ import { logger } from '@navikt/next-logger'
 
 export async function GET(): Promise<Response> {
     logger.info('Next.js server: received pre stop request, waiting for 10s before starting shutdown')
+    // eslint-disable-next-line
+    console.log('Next.js server: received pre stop request console, waiting for 10s before starting shutdown')
     await new Promise<void>((resolve) => {
         setTimeout(() => {
             resolve()
