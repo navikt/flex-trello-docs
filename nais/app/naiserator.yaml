@@ -19,6 +19,10 @@ spec:
     scalingStrategy:
       cpu:
         thresholdPercentage: 90
+  preStopHook:
+    http:
+      path: /api/internal/preStop
+      port: 8080
   azure:
     application:
       allowAllUsers: false
@@ -44,7 +48,7 @@ spec:
     path: /api/internal/isAlive
   startup:
     path: /api/internal/isAlive
-    initialDelay: 60
+    initialDelay: 10
   accessPolicy:
     outbound:
       external:
