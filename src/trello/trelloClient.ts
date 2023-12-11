@@ -80,13 +80,13 @@ export async function hentTrelloKort(board: string | undefined): Promise<ListMed
         async (): Promise<TrelloCard[]> => {
             return hentTrellokort(board)
         },
-        { retries: 5 },
+        { retries: 15 },
     )
     const lister = await pRetry(
         async (): Promise<TrelloList[]> => {
             return hentTrelloLister(board)
         },
-        { retries: 5 },
+        { retries: 15 },
     )
     return await Promise.all(
         lister.map(async (liste, i) => {
