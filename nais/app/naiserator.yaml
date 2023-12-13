@@ -51,10 +51,20 @@ spec:
     initialDelay: 10
   accessPolicy:
     outbound:
-      external:
-        - host: api.trello.com
-        - host: trello.com
-        - host: raw.githubusercontent.com
+      external: # bruk nslookup mot api.trello.com og raw.githubusercontent.com og legg inn de nye ipene her
+        - ipv4: 185.166.143.18
+        - ipv4: 185.166.143.19
+        - ipv4: 185.166.143.20
+        - ipv4: 185.166.143.21
+        - ipv4: 185.166.143.22
+        - ipv4: 185.166.143.23
+        - ipv4: 185.166.143.24
+        - ipv4: 185.166.143.25
+        - ipv4: 185.166.143.26
+        - ipv4: 185.199.108.133
+        - ipv4: 185.199.109.133
+        - ipv4: 185.199.110.133
+        - ipv4: 185.199.111.133
   envFrom:
     - secret: flex-trello-docs-trello-secrets
   env:
