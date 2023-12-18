@@ -46,14 +46,15 @@ jobs:
     if: github.ref_name == 'master' || startsWith(github.ref_name, 'dev-')
     needs: build-and-publish
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     concurrency: nais-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v1
+      - uses: nais/deploy/actions/deploy@v2
         name: Deploy til dev
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           IMAGE: ${{ needs.build-and-publish.outputs.image }}
           RESOURCE: nais/app/naiserator.yaml
