@@ -19,7 +19,7 @@
     "dependencies": {
         "@navikt/aksel-icons": "^5.17.5",
         "@navikt/ds-css": "^5.17.5",
-        "@navikt/ds-react": "^5.17.4",
+        "@navikt/ds-react": "^5.17.5",
         "@navikt/ds-tailwind": "5.17.5",
         "@navikt/ds-tokens": "^5.17.4",
         "@navikt/next-auth-wonderwall": "^1.5.0",
