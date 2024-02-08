@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
-import Link from 'next/link'
 
 import { TrelloCard } from '@/trello/trelloClient'
-import { AkselLink, EditIcon, Heading } from '@/components/clientAksel'
+import { Heading } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
+import { EditButton } from '@/components/EditBurron'
 
 export function TrelloKortRendring({ kortet }: { kortet: TrelloCard }): ReactElement {
     return (
@@ -13,10 +13,7 @@ export function TrelloKortRendring({ kortet }: { kortet: TrelloCard }): ReactEle
             </Heading>
 
             <MarkdownAksel md={kortet.desc} />
-            <AkselLink as={Link} className="text-gray-500" target="_blank" underline={false} href={kortet.shortUrl}>
-                {'Sist redigert ' + kortet.dateLastActivity.slice(0, 10)}{' '}
-                <EditIcon className="inline" title="a11y-title" fontSize="1.5rem" />
-            </AkselLink>
+            <EditButton kortet={kortet} />
         </>
     )
 }
