@@ -1,9 +1,10 @@
 import '../../styles/globals.css'
 import { ReactElement } from 'react'
 import Link from 'next/link'
+import { ReadMore } from '@navikt/ds-react'
+import { Link as AkselLink } from '@navikt/ds-react'
 
 import { hentTrelloKort, urlFriendly } from '@/trello/trelloClient'
-import { AkselLink, ReadMore } from '@/components/clientAksel'
 import { verifyUserLoggedIn } from '@/auth/authentication'
 import { arraysAreEqual } from '@/utlis/arrayEqual'
 

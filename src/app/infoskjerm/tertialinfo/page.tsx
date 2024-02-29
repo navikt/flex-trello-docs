@@ -1,6 +1,5 @@
 import { ReactElement } from 'react'
-
-import { BodyShort } from '@/components/clientAksel'
+import { BodyShort } from '@navikt/ds-react'
 
 export default async function Tertialinfo(): Promise<ReactElement> {
     return (

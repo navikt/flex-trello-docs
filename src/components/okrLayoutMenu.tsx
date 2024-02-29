@@ -3,9 +3,9 @@
 import React, { ReactElement } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Link as AkselLink } from '@navikt/ds-react'
 
 import { ListMedCards } from '@/trello/trelloClient'
-import { AkselLink } from '@/components/clientAksel'
 
 export function OkrLayoutMenu({
     okrList,
