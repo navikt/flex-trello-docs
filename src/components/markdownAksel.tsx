@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { BodyLong, Heading } from '@navikt/ds-react'
 import { DocPencilIcon } from '@navikt/aksel-icons'
 import { Link as AkselLink } from '@navikt/ds-react'
+import { List as AkselList, ListItem as AkselListItem } from '@navikt/ds-react/List'
 
-import { AkselList, AkselListItem } from '@/components/clientAksel'
 import { Bilde } from '@/components/bilde'
 import { urlFriendly } from '@/trello/trelloClient'
 
