@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react'
 import Link from 'next/link'
 import { Heading } from '@navikt/ds-react'
 import { DocPencilIcon } from '@navikt/aksel-icons'
+import { Link as AkselLink } from '@navikt/ds-react'
 
 import { ListMedCards } from '@/trello/trelloClient'
-import { AkselLink } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
 export function RetroKortRendring({ list }: { list: ListMedCards }): ReactElement {

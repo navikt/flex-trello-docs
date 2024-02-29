@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import React, { ReactElement, useEffect } from 'react'
 import { DocPencilIcon } from '@navikt/aksel-icons'
+import { Link as AkselLink } from '@navikt/ds-react'
 
 import { TrelloCard } from '@/trello/trelloClient'
-import { AkselLink } from '@/components/clientAksel'
 
 export function EditButton({ kortet }: { kortet: TrelloCard }): ReactElement {
     useEffect(() => {

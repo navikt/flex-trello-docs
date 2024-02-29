@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react'
 import Link from 'next/link'
 import { Heading } from '@navikt/ds-react'
 import { DocPencilIcon } from '@navikt/aksel-icons'
+import { Link as AkselLink } from '@navikt/ds-react'
 
 import { ListMedCards, TrelloCard } from '@/trello/trelloClient'
-import { AkselLink } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
 function EnkeltKvadrat({ kortet, infoskjerm }: { kortet: TrelloCard; infoskjerm?: boolean }): ReactElement {

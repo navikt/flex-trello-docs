@@ -3,8 +3,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 import { BodyLong, Heading } from '@navikt/ds-react'
 import { DocPencilIcon } from '@navikt/aksel-icons'
+import { Link as AkselLink } from '@navikt/ds-react'
 
-import { AkselLink, AkselList, AkselListItem } from '@/components/clientAksel'
+import { AkselList, AkselListItem } from '@/components/clientAksel'
 import { Bilde } from '@/components/bilde'
 import { urlFriendly } from '@/trello/trelloClient'
 

@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
 import Link from 'next/link'
 import { DocPencilIcon } from '@navikt/aksel-icons'
+import { Link as AkselLink } from '@navikt/ds-react'
 
 import { MarkdownAksel } from '@/components/markdownAksel'
-import { AkselLink } from '@/components/clientAksel'
 
 export async function GithubRepoReadme({ repo }: { repo: string }): Promise<ReactElement> {
     const readmeFromGithubRaw = `https://raw.githubusercontent.com/navikt/${repo}/master/README.md`
