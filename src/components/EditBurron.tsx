@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import React, { ReactElement, useEffect } from 'react'
+import { DocPencilIcon } from '@navikt/aksel-icons'
 
 import { TrelloCard } from '@/trello/trelloClient'
-import { AkselLink, EditIcon } from '@/components/clientAksel'
+import { AkselLink } from '@/components/clientAksel'
 
 export function EditButton({ kortet }: { kortet: TrelloCard }): ReactElement {
     useEffect(() => {
@@ -24,7 +25,7 @@ export function EditButton({ kortet }: { kortet: TrelloCard }): ReactElement {
     return (
         <AkselLink as={Link} className="text-gray-500" target="_blank" underline={false} href={kortet.shortUrl}>
             {'Sist redigert ' + kortet.dateLastActivity.slice(0, 10)}{' '}
-            <EditIcon className="inline" title="a11y-title" fontSize="1.5rem" />
+            <DocPencilIcon className="inline" title="a11y-title" fontSize="1.5rem" />
         </AkselLink>
     )
 }

@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
+import { BodyLong, Heading } from '@navikt/ds-react'
+import { DocPencilIcon } from '@navikt/aksel-icons'
 
-import { AkselLink, AkselList, AkselListItem, BodyLong, Heading, LinkIcon } from '@/components/clientAksel'
+import { AkselLink, AkselList, AkselListItem } from '@/components/clientAksel'
 import { Bilde } from '@/components/bilde'
 import { urlFriendly } from '@/trello/trelloClient'
 
@@ -74,7 +76,7 @@ function Tittel(props: { children: React.ReactNode; level: '1' | '2' | '3' | '4'
         <Heading id={anker} level={props.level} size={size(props.level)} spacing>
             {props.children}
             <a href={'#' + anker}>
-                <LinkIcon className="inline ml-2" title="a11y-title" fontSize="1.5rem" />
+                <DocPencilIcon className="inline ml-2" title="a11y-title" fontSize="1.5rem" />
             </a>
         </Heading>
     )

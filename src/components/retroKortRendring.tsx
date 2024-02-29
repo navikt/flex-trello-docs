@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react'
 import Link from 'next/link'
+import { Heading } from '@navikt/ds-react'
+import { DocPencilIcon } from '@navikt/aksel-icons'
 
 import { ListMedCards } from '@/trello/trelloClient'
-import { Heading, AkselLink, EditIcon } from '@/components/clientAksel'
+import { AkselLink } from '@/components/clientAksel'
 import { MarkdownAksel } from '@/components/markdownAksel'
 
 export function RetroKortRendring({ list }: { list: ListMedCards }): ReactElement {
@@ -28,7 +30,7 @@ export function RetroKortRendring({ list }: { list: ListMedCards }): ReactElemen
                             underline={false}
                             href={card.shortUrl}
                         >
-                            <EditIcon className="inline" title="a11y-title" fontSize="1.5rem" />
+                            <DocPencilIcon className="inline" title="a11y-title" fontSize="1.5rem" />
                         </AkselLink>
                     </div>
                     <MarkdownAksel md={card.desc} />
