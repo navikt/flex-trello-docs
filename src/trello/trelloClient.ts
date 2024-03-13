@@ -1,4 +1,6 @@
-import pRetry from 'p-retry'
+import dns from 'dns'
+
+import { logger } from '@navikt/next-logger'
 
 interface TrelloList {
     id: string
@@ -76,59 +78,66 @@ export function urlFriendly(str: string): string {
 }
 
 export async function hentTrelloKort(board: string | undefined): Promise<ListMedCards[]> {
-    const kort = await pRetry(
-        async (): Promise<TrelloCard[]> => {
-            return hentTrellokort(board)
-        },
-        { retries: 15 },
-    )
-    const lister = await pRetry(
-        async (): Promise<TrelloList[]> => {
-            return hentTrelloLister(board)
-        },
-        { retries: 15 },
-    )
-    return await Promise.all(
-        lister.map(async (liste, i) => {
-            const cardPromises = kort
-                .filter((k) => k.idList === liste.id)
-                .map(async (k, j) => {
-                    const splittetNavn = k.name.split('/').map((s) => s.trim())
-                    const siste = splittetNavn.pop() || ''
+    try {
+        const kort = await hentTrellokort(board)
 
-                    const mapper = [] as string[]
-                    if (i > 0) {
-                        mapper.push(liste.name)
-                    }
-                    mapper.push(...splittetNavn)
+        const lister = await hentTrelloLister(board)
 
-                    function url(): string {
-                        if (i == 0 && j == 0) {
-                            return '/'
+        return await Promise.all(
+            lister.map(async (liste, i) => {
+                const cardPromises = kort
+                    .filter((k) => k.idList === liste.id)
+                    .map(async (k, j) => {
+                        const splittetNavn = k.name.split('/').map((s) => s.trim())
+                        const siste = splittetNavn.pop() || ''
+
+                        const mapper = [] as string[]
+                        if (i > 0) {
+                            mapper.push(liste.name)
                         }
-                        return '/' + [...mapper, siste].map((m) => urlFriendly(m)).join('/')
-                    }
+                        mapper.push(...splittetNavn)
 
-                    const memberNames = k.idMembers ? await Promise.all(k.idMembers.map(hentKortMedlemNavn)) : []
+                        function url(): string {
+                            if (i == 0 && j == 0) {
+                                return '/'
+                            }
+                            return '/' + [...mapper, siste].map((m) => urlFriendly(m)).join('/')
+                        }
 
-                    return {
-                        ...k,
-                        name: siste,
-                        url: url(),
-                        mapper: mapper,
-                        urlMapper: mapper.map((m) => urlFriendly(m)),
-                        members: memberNames,
-                        trengerArbeid:
-                            k.labels.some((l) => l.name.toLowerCase() === 'trenger arbeid') || k.desc.length < 10,
-                    }
-                })
-            const cards = await Promise.all(cardPromises)
+                        const memberNames = k.idMembers ? await Promise.all(k.idMembers.map(hentKortMedlemNavn)) : []
 
-            return {
-                ...liste,
-                url: urlFriendly(liste.name),
-                cards: cards,
+                        return {
+                            ...k,
+                            name: siste,
+                            url: url(),
+                            mapper: mapper,
+                            urlMapper: mapper.map((m) => urlFriendly(m)),
+                            members: memberNames,
+                            trengerArbeid:
+                                k.labels.some((l) => l.name.toLowerCase() === 'trenger arbeid') || k.desc.length < 10,
+                        }
+                    })
+                const cards = await Promise.all(cardPromises)
+
+                return {
+                    ...liste,
+                    url: urlFriendly(liste.name),
+                    cards: cards,
+                }
+            }),
+        )
+    } catch (error) {
+        logger.error('Error in trello fetching, vurder å utvid med flere IPer', error)
+        // Erstatt 'example.com' med domenet du vil slå opp
+        const domain = 'api.trello.com'
+
+        dns.resolve(domain, 'A', (err, addresses) => {
+            if (err) {
+                logger.error(`Kunne ikke løse opp domenet: ${err}`)
+                return
             }
-        }),
-    )
+            logger.error(`IP-adresser for ${domain}: ${addresses.join(', ')}`)
+        })
+        throw error
+    }
 }
