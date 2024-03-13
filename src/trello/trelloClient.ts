@@ -1,4 +1,7 @@
+import dns from 'dns'
+
 import pRetry from 'p-retry'
+import { logger } from '@navikt/next-logger'
 
 interface TrelloList {
     id: string
@@ -76,6 +79,17 @@ export function urlFriendly(str: string): string {
 }
 
 export async function hentTrelloKort(board: string | undefined): Promise<ListMedCards[]> {
+    // Erstatt 'example.com' med domenet du vil slå opp
+    const domain = 'api.trello.com'
+
+    dns.resolve(domain, 'A', (err, addresses) => {
+        if (err) {
+            logger.error(`Kunne ikke løse opp domenet: ${err}`)
+            return
+        }
+        logger.info(`IP-adresser for ${domain}: ${addresses.join(', ')}`)
+    })
+
     const kort = await pRetry(
         async (): Promise<TrelloCard[]> => {
             return hentTrellokort(board)
