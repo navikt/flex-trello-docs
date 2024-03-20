@@ -84,3 +84,7 @@ spec:
     - emptyDir:
         medium: Memory
       mountPath: /.next/cache
+  gcp:
+    bigQueryDatasets:
+      - name: flex_trellodocs_dataset
+        permission: READWRITE
