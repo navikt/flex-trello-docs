@@ -71,13 +71,13 @@ function hentStyling(feedback: Feedback): Styling {
         case '3':
             return {
                 emoji: '😐',
-                bakgrunn: 'bg-blue-300',
+                bakgrunn: 'bg-blue-400',
             }
         case '4':
         case 'JA':
             return {
                 emoji: '🙂',
-                bakgrunn: 'bg-green-300',
+                bakgrunn: 'bg-green-400',
             }
         case '5':
             return {
