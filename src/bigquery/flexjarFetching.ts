@@ -8,7 +8,10 @@ export async function hentFlexjarFeedbacks(): Promise<Feedback[]> {
     const bigquery = new BigQuery(options)
     const bqTabell = '`flex-prod-af40.flex_dataset.flexjar_infoskjerm_view`'
     const query = `SELECT feedback,
-                          svar
+                          svar,
+                          app,
+                          feedbackId,
+                          opprettet
                    FROM ${bqTabell}`
 
     const [job] = await bigquery.createQueryJob({
@@ -26,12 +29,18 @@ function mapResponse(rows: any[]): Feedback[] {
         const newVar: Feedback = {
             feedback: row.feedback,
             svar: row.svar,
+            app: row.app,
+            feedbackId: row.feedbackId,
+            opprettet: row.opprettet.value,
         }
         return newVar
     })
 }
 
-interface Feedback {
+export interface Feedback {
     feedback: string
     svar: string
+    app: string
+    feedbackId: string
+    opprettet: string
 }
