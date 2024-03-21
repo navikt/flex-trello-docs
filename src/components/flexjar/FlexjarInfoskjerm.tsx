@@ -40,7 +40,7 @@ export function FlexjarInfoskjerm({ feedbacks }: { feedbacks: Feedback[] }): Rea
             <div
                 className={`w-100 max-w-90 flex h-screen flex-col justify-center align-middle ${styling.bakgrunn} py-10 px-10 text-center leading-none text-white`}
             >
-                {styling.emoji && <BodyShort className="text-6xl mb-10">{styling.emoji}</BodyShort>}
+                {styling.emoji && <BodyShort className="text-8xl mb-10">{styling.emoji}</BodyShort>}
                 <BodyLong style={{ lineHeight: '1.5' }} className={calculateFontSize(currentFeedback)}>
                     {currentFeedback.feedback}
                 </BodyLong>
