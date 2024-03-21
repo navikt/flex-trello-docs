@@ -17,6 +17,18 @@ export function FlexjarInfoskjerm({ feedbacks }: { feedbacks: Feedback[] }): Rea
             return () => clearInterval(interval)
         }
     }, [feedbacks])
+
+    useEffect(() => {
+        const handleKeyDown = (): void => {
+            const randomFeedback = feedbacks[Math.floor(Math.random() * feedbacks.length)]
+            setCurrentFeedback(randomFeedback)
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [feedbacks])
     if (!currentFeedback) {
         return <div>Det er ingen tilbakemeldinger</div>
     }
@@ -29,7 +41,12 @@ export function FlexjarInfoskjerm({ feedbacks }: { feedbacks: Feedback[] }): Rea
                 className={`w-100 max-w-90 flex h-screen flex-col justify-center align-middle ${styling.bakgrunn} py-10 px-10 text-center leading-none text-white`}
             >
                 {styling.emoji && <BodyShort className="text-6xl mb-10">{styling.emoji}</BodyShort>}
-                <BodyLong className={calculateFontSize(currentFeedback)}>{currentFeedback.feedback}</BodyLong>
+                <BodyLong
+                    style={{ lineHeight: '1.5'}
+                    className={calculateFontSize(currentFeedback)}
+                >
+                    {currentFeedback.feedback}
+                </BodyLong>
                 <BodyShort className="text-1xl mt-20">{'💪 Flexjar ' + datoFormattering(currentFeedback)}</BodyShort>
             </div>
         </>
@@ -80,9 +97,9 @@ function hentStyling(feedback: Feedback): Styling {
 function calculateFontSize(fe: Feedback): string {
     const text = fe.feedback
     if (text.length > 100) {
-        return 'text-5xl'
-    } else if (text.length > 50) {
         return 'text-6xl'
+    } else if (text.length > 50) {
+        return 'text-7xl'
     } else {
         return 'text-8xl'
     }
