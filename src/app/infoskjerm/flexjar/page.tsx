@@ -1,15 +1,10 @@
 import { ReactElement } from 'react'
 
 import { hentFlexjarFeedbacks } from '@/bigquery/flexjarFetching'
+import { FlexjarInfoskjerm } from '@/components/flexjar/FlexjarInfoskjerm'
 
 export default async function Docs(): Promise<ReactElement> {
     const list = await hentFlexjarFeedbacks()
 
-    return (
-        <>
-            {list.map((feedback, index) => (
-                <h2 key={index}>{feedback.feedback}</h2>
-            ))}
-        </>
-    )
+    return <FlexjarInfoskjerm feedbacks={list} />
 }
