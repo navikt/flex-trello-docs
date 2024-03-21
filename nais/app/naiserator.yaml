@@ -73,6 +73,11 @@ spec:
         - ipv4: 18.165.122.62
         - ipv4: 18.165.122.95
         - ipv4: 18.165.122.48
+        - ipv4: 108.157.214.125
+        - ipv4: 108.157.214.91
+        - ipv4: 108.157.214.29
+        - ipv4: 108.157.214.20
+
   envFrom:
     - secret: flex-trello-docs-trello-secrets
   env:
