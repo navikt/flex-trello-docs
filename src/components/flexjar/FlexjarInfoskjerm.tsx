@@ -1,7 +1,7 @@
 'use client'
 
 import React, { ReactElement, useEffect, useState } from 'react'
-import { BodyShort } from '@navikt/ds-react'
+import { BodyLong, BodyShort } from '@navikt/ds-react'
 
 import { Feedback } from '@/bigquery/flexjarFetching'
 
@@ -13,7 +13,7 @@ export function FlexjarInfoskjerm({ feedbacks }: { feedbacks: Feedback[] }): Rea
             const interval = setInterval(() => {
                 const randomFeedback = feedbacks[Math.floor(Math.random() * feedbacks.length)]
                 setCurrentFeedback(randomFeedback)
-            }, 10000)
+            }, 60000)
             return () => clearInterval(interval)
         }
     }, [feedbacks])
@@ -21,44 +21,70 @@ export function FlexjarInfoskjerm({ feedbacks }: { feedbacks: Feedback[] }): Rea
         return <div>Det er ingen tilbakemeldinger</div>
     }
 
+    const styling = hentStyling(currentFeedback)
+
     return (
         <>
-            <div className="w-100 max-w-90 flex h-screen flex-col justify-center align-middle bg-red-100 py-10 text-center leading-none text-white">
-                <BodyShort className="text-6xl mb-10">{hentEmoji(currentFeedback)}</BodyShort>
-                <BodyShort className={calculateFontSize(currentFeedback)}>{currentFeedback.feedback}</BodyShort>
+            <div
+                className={`w-100 max-w-90 flex h-screen flex-col justify-center align-middle ${styling.bakgrunn} py-10 px-10 text-center leading-none text-white`}
+            >
+                {styling.emoji && <BodyShort className="text-6xl mb-10">{styling.emoji}</BodyShort>}
+                <BodyLong className={calculateFontSize(currentFeedback)}>{currentFeedback.feedback}</BodyLong>
                 <BodyShort className="text-1xl mt-20">{'💪 Flexjar ' + datoFormattering(currentFeedback)}</BodyShort>
             </div>
         </>
     )
 }
 
-function hentEmoji(feedback: Feedback): string {
+interface Styling {
+    emoji?: string
+    bakgrunn: string
+}
+
+function hentStyling(feedback: Feedback): Styling {
     switch (feedback.svar) {
         case '1':
-            return '😡 '
+            return {
+                emoji: '😡',
+                bakgrunn: 'bg-red-600',
+            }
         case '2':
         case 'NEI':
-            return '🙁 '
+            return {
+                emoji: '🙁',
+                bakgrunn: 'bg-red-400',
+            }
         case '3':
-            return '😐 '
+            return {
+                emoji: '😐',
+                bakgrunn: 'bg-blue-300',
+            }
         case '4':
         case 'JA':
-            return '🙂 '
+            return {
+                emoji: '🙂',
+                bakgrunn: 'bg-green-300',
+            }
         case '5':
-            return '😍 '
+            return {
+                emoji: '😍',
+                bakgrunn: 'bg-green-700',
+            }
         default:
-            return ''
+            return {
+                bakgrunn: 'bg-gray-800',
+            }
     }
 }
 
 function calculateFontSize(fe: Feedback): string {
     const text = fe.feedback
     if (text.length > 100) {
-        return 'text-4xl'
-    } else if (text.length > 50) {
         return 'text-5xl'
-    } else {
+    } else if (text.length > 50) {
         return 'text-6xl'
+    } else {
+        return 'text-8xl'
     }
 }
 
