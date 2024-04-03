@@ -24,7 +24,7 @@
         "@navikt/ds-tailwind": "6.3.4",
         "@navikt/ds-tokens": "^6.3.4",
         "@navikt/next-logger": "^1.23.0",
-        "@navikt/oasis": "^3.2.2",
+        "@navikt/oasis": "^3.2.3",
         "@next/mdx": "^14.1.4",
         "@types/node": "20.11.30",
         "@types/react": "18.2.56",
