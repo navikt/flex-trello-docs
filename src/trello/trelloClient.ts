@@ -64,7 +64,7 @@ export async function hentKortMedlemNavn(memberId: string): Promise<string> {
         return data.fullName
     }
 
-    throw Error('Failed to fetch member name')
+    return 'ukjent medlem'
 }
 
 export function urlFriendly(str: string): string {
