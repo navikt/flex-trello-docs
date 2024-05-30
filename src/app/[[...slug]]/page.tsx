@@ -1,14 +1,13 @@
 import { ReactElement } from 'react'
+import { Alert } from '@navikt/ds-react'
 
 import { hentTrelloKort } from '@/trello/trelloClient'
-import { TrelloKortRendring } from '@/components/trelloKortRendring'
 import { GithubRepoReadme } from '@/components/githubRepoReadme'
 import { OkrKortRendring } from '@/components/okrKortRendring'
 import { RetroKortRendring } from '@/components/retroKortRendring'
 
 export default async function Docs({ params }: { params: { slug?: string[] } }): Promise<ReactElement> {
     const slug = params.slug || []
-    const urlFraSlug = '/' + slug.join('/')
 
     switch (slug[0]) {
         case 'apper':
@@ -33,11 +32,14 @@ export default async function Docs({ params }: { params: { slug?: string[] } }):
         }
 
         default: {
-            const list = await hentTrelloKort(process.env['TRELLO_BOARD'])
-            const kortet = list.flatMap((l) => l.cards).find((c) => c.url === urlFraSlug)
-            if (kortet) {
-                return <TrelloKortRendring kortet={kortet} />
-            }
+            return (
+                <>
+                    <Alert variant="info">
+                        {' '}
+                        Team flex har flyttet all dokumentasjon til loop. Kontakt oss på #flex på slack
+                    </Alert>
+                </>
+            )
         }
     }
 
