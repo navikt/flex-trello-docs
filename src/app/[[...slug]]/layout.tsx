@@ -117,8 +117,6 @@ export default async function RootLayout({
 }): Promise<ReactElement> {
     await verifyUserLoggedIn()
     const list = await hentTrelloKort(process.env['TRELLO_BOARD'])
-    const okrLister = await hentTrelloKort(process.env['TRELLO_OKR_BOARD'])
-    const retroLister = await hentTrelloKort(process.env['TRELLO_RETRO_BOARD'])
 
     const lenker = [] as Lenke[]
 
@@ -128,22 +126,7 @@ export default async function RootLayout({
         mapper: [],
         urlMapper: [],
     })
-    okrLister.forEach((l) => {
-        lenker.push({
-            name: l.name,
-            url: '/okr-board/' + l.url,
-            mapper: ['OKR Board'],
-            urlMapper: ['okr-board'],
-        })
-    })
-    retroLister.forEach((l) => {
-        lenker.push({
-            name: l.name,
-            url: '/retro-board/' + l.url,
-            mapper: ['Retro Board'],
-            urlMapper: ['retro-board'],
-        })
-    })
+
     list[0].cards.forEach((c, i) => {
         if (i > 0)
             lenker.push({
